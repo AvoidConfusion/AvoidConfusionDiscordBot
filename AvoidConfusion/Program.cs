@@ -33,7 +33,13 @@ namespace AvoidConfusion
             {
                 //Get the configuration.
                 //Ayarlarımızı alalım.
-                StreamReader configFile = new(Path.Combine(Environment.GetEnvironmentVariable("UserProfile"), @"config\AvoidConfusion\config.json"));
+                StreamReader configFile = 
+               new(
+                    Path.Combine(
+                        Environment.GetEnvironmentVariable("UserProfile"),
+                        @"config\AvoidConfusion\config.json"
+                    )
+                );
 
                 AvoidConfusionConfiguration configuration =
                     JsonConvert.DeserializeObject<AvoidConfusionConfiguration>
@@ -85,7 +91,7 @@ namespace AvoidConfusion
                 Debug.WriteLine($"{excp}\n");
                 Trace.WriteLine($"{excp}\n");
                 #if DEBUG
-                Console.Out.WriteLine($"{excp}\n");
+                 Console.Out.WriteLine($"{excp}\n");
                 #endif
                 return excp.GetHashCode();
             }
