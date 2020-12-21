@@ -28,7 +28,24 @@ namespace AvoidConfusion
 {
     public class AvoidConfusionCommands:BaseCommandModule
     {
-        [Command("ping"),Description("Bot gecikmesini ölçer.")]
+        [
+            /*  Command name:ping
+             *  Command description:Measures the bot latency.
+             * 
+             * Note:
+             *  "DescriptionAttribute" declares the description of the command.
+             *  "CommandAttribute" declares the name for the command.
+             */
+
+            /* Komut adı: ping
+             * Komut açıklaması: Botun gecikmesini ölçer.
+             *  
+             */
+            Command("ping"),
+            Description("Bot gecikmesini ölçer.")
+        ]
+        //Measures the bot latency.
+        //Botun gecikme süresini ölçer.
         public async Task Ping(CommandContext context)
         {
             int result = context.Client.Ping;
@@ -53,6 +70,24 @@ namespace AvoidConfusion
                 _ = await context.RespondAsync(embed: _embed.Build());
             }
             
+        }
+
+        [
+            Command("begin-discussion"),
+            Description("Bir konuşma başlatır.")
+        ]
+        //Command for starting a conversation.
+        //Konuşma başlatmak için komut.
+        public async Task InitConversation
+            (
+             CommandContext context,
+             [Description("Konuşmanın başlığı.")]
+             string conversationTitle,
+             [Description("Konuşmanın açıklaması.")]
+             string conversationDescription
+            )
+        {
+
         }
 
 

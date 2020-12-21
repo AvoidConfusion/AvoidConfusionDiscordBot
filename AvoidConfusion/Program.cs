@@ -33,7 +33,7 @@ namespace AvoidConfusion
             {
                 //Get the configuration.
                 //Ayarlarımızı alalım.
-                StreamReader configFile = new(@"%UserFile%\config\AvoidConfusion\config.json");
+                StreamReader configFile = new(Path.Combine(Environment.GetEnvironmentVariable("UserProfile"), @"config\AvoidConfusion\config.json"));
 
                 AvoidConfusionConfiguration configuration =
                     JsonConvert.DeserializeObject<AvoidConfusionConfiguration>
