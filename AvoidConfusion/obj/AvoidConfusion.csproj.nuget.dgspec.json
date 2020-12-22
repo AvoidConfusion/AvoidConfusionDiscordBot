@@ -48,6 +48,10 @@
               "target": "Package",
               "version": "[4.0.0-rc1, )"
             },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.2, )"
+            },
             "System.Json": {
               "target": "Package",
               "version": "[4.7.1, )"

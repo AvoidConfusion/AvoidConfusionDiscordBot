@@ -22,6 +22,7 @@
   <ItemGroup>
     <PackageReference Include="DSharpPlus" Version="4.0.0-rc1" />
     <PackageReference Include="DSharpPlus.CommandsNext" Version="4.0.0-rc1" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
     <PackageReference Include="System.Json" Version="4.7.1" />
     <PackageReference Include="System.Text.Json" Version="5.0.0" />
   </ItemGroup>

@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using System.Data;
 using System.Data.Common;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
 #endregion
 
 #region D#+
@@ -26,7 +28,7 @@ using DSharpPlus.CommandsNext.Entities;
 
 namespace AvoidConfusion
 {
-    public class AvoidConfusionCommands:BaseCommandModule
+    public partial class AvoidConfusionCommands : BaseCommandModule
     {
         [
             /*  Command name:ping
@@ -51,25 +53,25 @@ namespace AvoidConfusion
             int result = context.Client.Ping;
             var _embed = new DiscordEmbedBuilder();
             var random = new Random();
-            (float r, float g, float b) = (((float)random.NextDouble()) , ((float)random.NextDouble()), ((float)random.NextDouble()));
+            (float r, float g, float b) = (((float)random.NextDouble()), ((float)random.NextDouble()), ((float)random.NextDouble()));
 
             try
             {
-                _embed.Color = new Optional<DiscordColor>(new DiscordColor(r,g,b));
+                _embed.Color = new Optional<DiscordColor>(new DiscordColor(r, g, b));
                 _embed.Title = "Botun cevap verme süresi ölçülüyor...";
-                _embed.Author = new() { Name = "AvoidConfusion - Karmaşaları çözen Discord botu."};
+                _embed.Author = new() { Name = "AvoidConfusion - Karmaşaları çözen Discord botu." };
                 _embed.AddField("Bot Gecikme Süresi (milisaniye):", $"{result} ms");
                 _embed.Description = $"{result} ms içinde yanıt verildi.";
                 _ = await context.RespondAsync(embed: _embed.Build());
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _embed.WithTitle("Komut Çakıldı!");
                 _embed.WithColor(new(255, 0, 0));
                 _embed.WithDescription($"{ex}");
                 _ = await context.RespondAsync(embed: _embed.Build());
             }
-            
+
         }
 
         [
@@ -78,25 +80,19 @@ namespace AvoidConfusion
         ]
         //Command for starting a conversation.
         //Konuşma başlatmak için komut.
-        public async Task InitConversation
+        public partial Task InitConversation
             (
              CommandContext context,
              [Description("Konuşmanın başlığı.")]
              string conversationTitle,
              [Description("Konuşmanın açıklaması.")]
              string conversationDescription
-            )
-        {
-            DiscordEmbedBuilder embedBuilder = new();
-            embedBuilder.Color = new Optional<DiscordColor>(new DiscordColor(255, 0, 127));
-            embedBuilder.Author = new DiscordEmbedBuilder.EmbedAuthor();
-            embedBuilder.Author.Name = "AvoidConfusion - Karmaşaları çözen Discord botu.";
-            embedBuilder.Title = "Bu komut yapım aşamasındadır.";
-            await context.RespondAsync(embed: embedBuilder.Build());
-        }
-
+            );
 
     }
+
+}
+    
     public class AvoidConfusionHelper:BaseHelpFormatter
     {
         protected DiscordEmbedBuilder _embed;
@@ -129,7 +125,5 @@ namespace AvoidConfusion
             return new CommandHelpMessage(content: _strBuilder.ToString(), embed: _embed.Build());
         }
     }
-}
-
 
 
