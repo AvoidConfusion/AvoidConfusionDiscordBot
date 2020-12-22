@@ -87,7 +87,12 @@ namespace AvoidConfusion
              string conversationDescription
             )
         {
-
+            DiscordEmbedBuilder embedBuilder = new();
+            embedBuilder.Color = new Optional<DiscordColor>(new DiscordColor(255, 0, 127));
+            embedBuilder.Author = new DiscordEmbedBuilder.EmbedAuthor();
+            embedBuilder.Author.Name = "AvoidConfusion - Karmaşaları çözen Discord botu.";
+            embedBuilder.Title = "Bu komut yapım aşamasındadır.";
+            await context.RespondAsync(embed: embedBuilder.Build());
         }
 
 

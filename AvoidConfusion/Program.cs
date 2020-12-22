@@ -33,7 +33,15 @@ namespace AvoidConfusion
             {
                 //Get the configuration.
                 //Ayarlarımızı alalım.
-                StreamReader configFile = new(Path.Combine(Environment.GetEnvironmentVariable("UserProfile"), @"config\AvoidConfusion\config.json"));
+                StreamReader configFile =
+                    new
+                    (
+                        Path.Combine
+                        (
+                            Environment.GetEnvironmentVariable("UserProfile"),
+                            @"config\AvoidConfusion\config.json"
+                        )
+                    );
 
                 AvoidConfusionConfiguration configuration =
                     JsonConvert.DeserializeObject<AvoidConfusionConfiguration>
@@ -42,30 +50,12 @@ namespace AvoidConfusion
                         //Ayarlar dosyasını sonuna kadar okuyalım.
                         configFile.ReadToEnd()
                     );
-                #region Test Lines-Test Satırları
-                /* Test satırları - Test Lines
-                 * 
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.Out.WriteLine($"{configFile.ReadToEnd()}\n\n\n\n\n\n");
-
-                for (byte i = 0; i < 4; i++)
-                {
-                    if (Console.ReadKey().Key == ConsoleKey.Escape)
-                        goto EXIT;
-                    else
-                        Console.Write("\b\b");
-                }
-               
-                Console.ForegroundColor = (ConsoleColor)7;
-
-                Console.Clear();
-                */
-                #endregion
 
                 //Create the Discord Client.
                 //Discord İstemcimiz'i yaratalım.
                 var discord = new DiscordClient(configuration);
                 var commands= discord.UseCommandsNext(new() { StringPrefixes = new[] { "&" } });
+
                 //Add some actions for the bot.
                 //Bota biraz işlevsellik ekleyelim.
                 commands.RegisterCommands<AvoidConfusionCommands>();
@@ -73,7 +63,9 @@ namespace AvoidConfusion
                 //Discord İstemcimiz'in bağlanmasını bekleyelim (AMK).
                 await discord.ConnectAsync();
 
-
+                //Set the status of the bot.
+                //Botumuzun durumunu ayarlayalım.
+                discord.Ready += Discord_Ready;
 
 
                 //Delay for an indefinite span of time.
@@ -91,6 +83,17 @@ namespace AvoidConfusion
             }
             
             return 0;
+        }
+
+        private static async Task Discord_Ready(DiscordClient sender, ReadyEventArgs e)
+        {
+            await sender.UpdateStatusAsync
+            (new DiscordActivity
+                (
+                    "Karmaşalarınızı",
+                    ActivityType.Watching
+                )
+           );
         }
     }
 }

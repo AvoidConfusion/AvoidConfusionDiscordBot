@@ -2,6 +2,7 @@
 using System;
 using System.Text;
 using System.Text.Json;
+using System.Data;
 #endregion
 #region D#+
 using DSharpPlus;
@@ -35,16 +36,27 @@ namespace AvoidConfusion
             ApplicationState = applicationState;
         }
         public string Token { get; init; }
+
+        public string DatabaseUsername { get; init; }
+
+        public string DatabasePassword { get; init; }
+
+
+
         public TokenType TokenType { get; init; } = TokenType.Bot;
 
         public ApplicationState ApplicationState { get; init; }
         
         public Version Version { get; init; }
+
         public static implicit operator DiscordConfiguration(AvoidConfusionConfiguration configuration) => 
         new()
         {
-            Token = configuration.Token,TokenType = configuration.TokenType
+            Token = configuration.Token,
+            TokenType = configuration.TokenType
         };
+
+        
 
     }
 }
