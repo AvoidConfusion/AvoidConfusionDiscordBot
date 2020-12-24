@@ -74,20 +74,7 @@ namespace AvoidConfusion
 
         }
 
-        [
-            Command("begin-discussion"),
-            Description("Bir konuşma başlatır.")
-        ]
-        //Command for starting a conversation.
-        //Konuşma başlatmak için komut.
-        public partial Task InitConversation
-            (
-             CommandContext context,
-             [Description("Konuşmanın başlığı.")]
-             string conversationTitle,
-             [Description("Konuşmanın açıklaması.")]
-             string conversationDescription
-            );
+       
 
     }
 

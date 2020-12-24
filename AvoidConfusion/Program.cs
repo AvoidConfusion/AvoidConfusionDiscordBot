@@ -54,18 +54,21 @@ namespace AvoidConfusion
                 //Create the Discord Client.
                 //Discord İstemcimiz'i yaratalım.
                 var discord = new DiscordClient(configuration);
-                var commands= discord.UseCommandsNext(new() { StringPrefixes = new[] { "&" } });
+                var commands= discord.UseCommandsNext(new() { StringPrefixes = new[] { "&", "@AvoidConfusion#4395 " } });
 
                 //Add some actions for the bot.
                 //Bota biraz işlevsellik ekleyelim.
                 commands.RegisterCommands<AvoidConfusionCommands>();
-                //Wait for the Discord Client to connect (WTF).
-                //Discord İstemcimiz'in bağlanmasını bekleyelim (AMK).
-                await discord.ConnectAsync();
 
                 //Set the status of the bot.
                 //Botumuzun durumunu ayarlayalım.
                 discord.Ready += Discord_Ready;
+
+                //Wait for the Discord Client to connect (WTF).
+                //Discord İstemcimiz'in bağlanmasını bekleyelim (AMK).
+                await discord.ConnectAsync();
+
+
 
 
                 //Delay for an indefinite span of time.

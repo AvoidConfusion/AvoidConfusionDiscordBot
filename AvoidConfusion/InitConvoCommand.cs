@@ -30,7 +30,21 @@ namespace AvoidConfusion
 {
     public partial class AvoidConfusionCommands
     {
-        public partial async Task InitConversation(CommandContext context, string conversationTitle, string conversationDescription)
+
+        //Command for starting a conversation.
+        //Konuşma başlatmak için komut.
+        [
+             Command("begin-discussion"),
+             Description("Bir konuşma başlatır.")
+        ]
+        public async Task InitConversation
+            (
+                CommandContext context,
+                [Description("Konuşma başlığı.")]
+                string conversationTitle,
+                [Description("Konuşma açıklaması.")]
+                string conversationDescription
+            )
         {
             //The startup variables.
             //Başlangıç değişkenleri.
@@ -61,7 +75,7 @@ namespace AvoidConfusion
                 {
                     //Connect to the database.
                     //Veritabanına bağlanalım.
-                    var connectionString = "Data Source=MasherCoder;Initial Catalog=AvoidConfusion;";
+                    var connectionString = "Data Source=MasherCoder;Initial Catalog=AvoidConfusion; Username=Bot";
                     using SqlConnection connection = new(connectionString);
                     await connection.OpenAsync();
                     //Get the snowflake of the guild where the command was sent.
@@ -114,7 +128,7 @@ namespace AvoidConfusion
                     //Bir konuşma kanalı açalım.
                     var convoChannel = await context.Guild.CreateChannelAsync
                         (
-                            $"convo{(DateTime.Now.Ticks << 3) | (DateTime.Now.Ticks >> 3)}",
+                            $"convo{((DateTime.Now.Ticks << 3) | (DateTime.Now.Ticks >> 61)):X10}",
                             ChannelType.Text,
                             topic: new Optional<string>(conversationDescription)
                         );
@@ -132,7 +146,8 @@ namespace AvoidConfusion
 
                     var recordChannelCommand = connection.CreateCommand();
                     recordChannelCommand.CommandType = CommandType.Text;
-                    recordChannelCommand.CommandText = "INSERT INTO [dbo].[Conversations] () VALUES ()";
+                    recordChannelCommand.CommandText = "INSERT INTO [dbo].[Conversations] ([GuildID], [ChannelSnowflake], [ConversatingUserRoleSnowflake],) VALUES ()";
+
 #nullable disable
                 }
                 catch (Exception excp)
