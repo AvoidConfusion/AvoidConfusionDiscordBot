@@ -14,11 +14,9 @@ server.pid
 *.eml
 /dist/
 .cache
-
-*.exe
 *.dll
-
-./AvoidConfusion/bin/*/*.dll
-./AvoidConfusion/bin/*/*.exe
-./AvoidConfusion/bin/*/*.cache
-./AvoidConfusion/obj/*
+*.exe
+/bin/*
+/obj/*
+*.json
+*.pdb
