@@ -8,7 +8,7 @@
 ## Home
 
 * [AvoidConfusion Discord Botu](home/tr-docs.md)
-* [Untitled](home/untitled-1.md)
+* [Katkıda Bulunma](home/untitled-1.md)
 * [Botumuzun Orijinal Sunucusuna Katılın](home/untitled.md)
 
 ---
