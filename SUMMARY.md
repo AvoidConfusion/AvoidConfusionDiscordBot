@@ -14,4 +14,5 @@
 ---
 
 * [Botu Davet Edin\(Invite the Bot\)](https://discord.com/api/oauth2/authorize?client_id=788682522766475305&permissions=805534928&redirect_uri=https%3A%2F%2Fdiscord.com%2Fapi%2Foauth2%2Fauthorize%3Fclient_id%)
+* [Değişim Kaydı](degisim-kaydi.md)
 
